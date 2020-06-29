@@ -39,6 +39,15 @@ platform hera.intel {
         ice_petlist_bounds="232 279"
     }
 
+    default_cpl_seq={
+        TASKS=288
+        TPN=40
+        atm_petlist_bounds="240 287"
+        med_petlist_bounds="0   119"
+        ocn_petlist_bounds="120 239"
+        ice_petlist_bounds="240 287"
+    }
+
     # PLATFORM DETECTION -----------------------------------------------
     embed bash detect [[[
         # This function is used at PARSE TIME to detect whether we are

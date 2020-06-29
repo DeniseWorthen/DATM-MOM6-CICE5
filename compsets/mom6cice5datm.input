@@ -53,7 +53,17 @@ build datm_mom6_cice.exe {
     build=NEMSAppBuilder(NEMS.x="@[target]",modules.nems="@[modules.nems]", 
                          OPTS="app=coupled_DATM_MOM6_CICE",md5sum="@[md5sum]") 
 }
-
+build datm_mom6_cice_cmeps.exe {
+    # Use NEMSAppBuilder to build a coupled app.
+    use plat
+    target="@[plat%EXECrt]/datm_mom6_cice.exe"
+    modules.nems="@[plat%INCrt]/modules_datm_mom6_cice"
+    md5sum="@[target].md5"
+ 
+    # The NEMSAppBuilder is another embedded bash script in nemscommon.input
+    build=NEMSAppBuilder(NEMS.x="@[target]",modules.nems="@[modules.nems]",
+                         OPTS="app=coupled_DATM_MOM6_CICE_CMEPS",md5sum="@[md5sum]")
+}   
 ########################################################################
 
 # Common variables used by many tests and input files:
@@ -203,6 +213,35 @@ test cpld_datm_mom6_cice5_cold_cfsr: datm_mom6_cice.exe {
     JATM='880'  
 
 }
+######################################################################## 
+# cold cfsr cmeps 
+
+test cpld_datm_mom6_cice5_cold_cmeps_cfsr: datm_mom6_cice_cmeps.exe { 
+    use cpld_datm_mom6_cice5_cold 
+
+    MEDCOMP="cmeps"
+
+    DATM_SRC="CFSR"       
+    FILENAME_BASE='cfsr.'    
+    IATM='1760'  
+    JATM='880'  
+   
+    RESTART_MED="@[DATM_SRC].cold.cpl.r.2011-10-01-03600.nc"
+
+    build=datm_mom6_cice_cmeps.exe
+
+    prep=datmprep(
+            RUNDIR="@[RUNDIR]",
+           modules="@[datm_mom6_cice_cmeps.exe%modules.nems]",
+              CNTL="@[CNTL]")
+
+    # Specify output files:
+    criteria output {
+        # WORKFILE                            .comparison. TARGET
+       "@[RESTART_MED]"     .bitcmp. "@[CNTLMED]"
+                    }
+}
+
 ########################################################################
 # 2d gefs
 
@@ -220,4 +259,40 @@ test cpld_datm_mom6_cice5_2d_cfsr: datm_mom6_cice.exe {
     FILENAME_BASE='cfsr.'    
     IATM='1760'  
     JATM='880'  
+    }
+
+########################################################################
+# 2d cmeps cfsr
+
+test cpld_datm_mom6_cice5_cmeps_2d_cfsr: datm_mom6_cice_cmeps.exe {
+    use cpld_datm_mom6_cice5_2d
+
+    MEDCOMP="cmeps"
+
+    DATM_SRC="CFSR"       
+    FILENAME_BASE='cfsr.'    
+    IATM='1760'  
+    JATM='880'  
+
+    build=datm_mom6_cice_cmeps.exe
+
+    prep=datmprep(
+            RUNDIR="@[RUNDIR]",
+           modules="@[datm_mom6_cice_cmeps.exe%modules.nems]",
+              CNTL="@[CNTL]")
+
+    RESTART_MED="@[DATM_SRC].cpl.r.2011-10-03-00000.nc"
+
+    # Specify output files:
+    criteria output {
+        # WORKFILE                            .comparison. TARGET
+        'RESTART/MOM.res.nc'                .bitcmp. "@[CNTL]"
+        'RESTART/MOM.res.nc'                .bitcmp. "@[CNTL]"
+        'RESTART/MOM.res_1.nc'              .bitcmp. "@[CNTL]"
+        'RESTART/MOM.res_2.nc'              .bitcmp. "@[CNTL]"
+        'RESTART/MOM.res_3.nc'              .bitcmp. "@[CNTL]"
+        'RESTART/iced.2011-10-03-00000.nc'  .bitcmp. "@[CNTL]"
+        "@[RESTART_MED]"                    .bitcmp. "@[CNTLMED]"
+                    }
+
     }

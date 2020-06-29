@@ -13,7 +13,7 @@ test cpld_datm_mom6_cice5_2d: datm_mom6_cice.exe {
        COM="@[plat%COMrt]/@[TEST_NAME]"            # Test result area
     RUNDIR="@[plat%TMPrt]/@[TEST_NAME]"            # Test work area
       CNTL="@[plat%BASELINE]/@[CNTL_NAME]"         # Control baseline area
-   CNTLMED="@[plat%BASELINE]/MEDIATOR_@[DATM_SRC]"  # Control/Mediator area 
+   CNTLMED="@[plat%BASELINE]/MEDIATOR_@[DATM_SRC]@[MEDCOMP]"  # Control/Mediator area 
  BL_INPUTS="@[plat%INPUTS]"
   
     DAYS='2'
@@ -41,7 +41,7 @@ test cpld_datm_mom6_cice5_2d: datm_mom6_cice.exe {
     TASKS=280
     
     # - nems.configure ---
-    nems_configure='med_atm_ocn_ice'
+    nems_configure="med@[MEDCOMP]_atm_ocn_ice"
     coupling_interval_slow_sec="@[CPL_SLOW]"
     coupling_interval_fast_sec="@[CPL_FAST]"
     
@@ -62,7 +62,10 @@ test cpld_datm_mom6_cice5_2d: datm_mom6_cice.exe {
             'ice_in_template'  <=copy=     "@[PARMnems]/ice_in_template"
         'diag_table_template'  <=copy=     "@[PARMnems]/diag_table_template"
    'INPUT/MOM_input_template'  <=copy=     "@[PARMnems]/MOM_input_template"
-                          '*'  <=copyfrom= "@[BL_INPUTS]/MEDIATOR_@[DATM_SRC]"
+               'fd_nems.yaml'  <=copy=     "@[PARMnems]/fd_nems.yaml"
+                     'pio_in'  <=copy=     "@[PARMnems]/pio_in"
+            'med_modelio.nml'  <=copy=     "@[PARMnems]/med_modelio.nml"
+                          '*'  <=copyfrom= "@[BL_INPUTS]/MEDIATOR_@[DATM_SRC]@[MEDCOMP]"
     } 
  
 
