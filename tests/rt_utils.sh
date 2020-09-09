@@ -404,7 +404,7 @@ check_results() {
       if [[ -f ${RUNDIR}/$i ]] ; then
         if [[ $i =~ RESTART/ ]]; then
           cp ${RUNDIR}/$i ${NEW_BASELINE}/${CNTL_DIR}/RESTART/$(basename $i)
-        elif [[ $i =~ mediator ]]; then
+        elif [[ $i =~ mediator || $i =~ DATM ]]; then
           cp ${RUNDIR}/$i ${NEW_BASELINE}/${CNTLMED_DIR}
         else
           cp ${RUNDIR}/${i} ${NEW_BASELINE}/${CNTL_DIR}/${i}

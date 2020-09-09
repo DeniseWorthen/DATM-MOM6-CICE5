@@ -27,6 +27,13 @@ else
 fi
 export S2S_DEBUG_MODULE
 
+if [[ ${app_name} =~ _CMEPS ]]; then
+  CMEPS=Y
+else
+  CMEPS=N
+fi
+export CMEPS
+
 if [[ ${clean_before} == YES ]]; then
   make app=${app_name} distclean
 fi

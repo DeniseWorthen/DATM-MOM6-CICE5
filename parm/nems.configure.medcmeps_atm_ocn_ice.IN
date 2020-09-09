@@ -32,7 +32,7 @@ OCN_attributes::
   DumpFields = true
   ProfileMemory = false
   OverwriteSlice = true
-  restart_option = nseconds
+  restart_option = nhours
   restart_n = @[RESTART_INTERVAL]
 ::
 

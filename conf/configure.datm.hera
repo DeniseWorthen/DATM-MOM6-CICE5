@@ -1,6 +1,6 @@
 ## NEMS configuration file
 ##
-## Platform: Theia
+## Platform: Hera
 ## Compiler: Intel with IntelMPI
 
 SHELL=/bin/sh
@@ -89,6 +89,10 @@ else
 CPPDEFS += -DMOIST_CAPPA -DUSE_COND
 endif
 
+ifeq ($(CMEPS),Y)
+CPPDEFS += -DCMEPS
+endif
+
 ifeq ($(32BIT),Y)
 CPPDEFS += -DOVERLOAD_R4 -DOVERLOAD_R8
 FFLAGS += -i4 -real-size 32
@@ -159,10 +163,6 @@ ifeq ($(VERBOSE),Y)
 CFLAGS += $(CFLAGS_VERBOSE)
 FFLAGS += $(FFLAGS_VERBOSE)
 LDFLAGS += $(LDFLAGS_VERBOSE)
-endif
-
-ifeq ($(CMEPS),Y)
-CPPDEFS += -DCMEPS
 endif
 
 LDFLAGS += $(LIBS)
