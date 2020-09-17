@@ -1,2 +1,3 @@
-COMPILE | coupled_DATM_MOM6_CICE_CMEPS             |   | hera.intel  | datm |
-RUN     | cpld_datm_mom6_cice5_cmeps_cold_cfsr     |   |             | datm |
+#COMPILE | coupled_DATM_MOM6_CICE_CMEPS             |   | hera.intel  | datm |
+COMPILE | coupled_DATM_MOM6_CICE6_CMEPS             |   | hera.intel  | datm |
+#RUN     | cpld_datm_mom6_cice5_cmeps_cold_cfsr     |   |             | datm |
