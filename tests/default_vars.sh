@@ -138,7 +138,7 @@ export MOM6_RESTART_SETTING='r'
 export med_model="nems"
 export atm_model="datm"
 export ocn_model="mom6"
-export ice_model="cice"
+export ice_model="cice6"
 
 export cap_dbug_flag="0"
 export use_coldstart="false"
@@ -159,6 +159,8 @@ export RUNTYPE='startup'
 export DUMPFREQ='d' 
 export DUMPFREQ_N='1' 
 export USE_RESTART_TIME='.false.'
+# set false for CICE6
+export RESTART_EXT='.false'
 # resolution dependent files
 export MESHICE="mesh.mx${OCNRES}.nc"
 export CICEGRID="grid_cice_NEMS_mx${OCNRES}.nc"
@@ -176,6 +178,6 @@ export CICE_HIST_AVG='.true.'
 export RUNID='cpcice'
 
 export CPLMODE='nems_orig_data'
-export RESTART_INTERVAL = 24
+export RESTART_INTERVAL='24'
 
 }

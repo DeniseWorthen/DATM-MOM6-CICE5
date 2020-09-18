@@ -24,7 +24,7 @@ export DAYS="2"
 export FHMAX="48"
 export FDIAG="6"
 export WLCLK=45
-export RESTART_INTERVAL=FHMAX
+export RESTART_INTERVAL=${FHMAX}
 
 # set component and coupling timesteps
 export DT_CICE=${DT_ATMOS}
