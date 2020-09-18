@@ -1,6 +1,5 @@
 mkdir INPUT DATM_INPUT RESTART history MOM6_OUTPUT
 
-
 # FV3 fixed input
 cp    @[RTPWD]/DATM/cfsr.SCRIP.nc DATM_INPUT
 export IATM=1760
@@ -19,12 +18,12 @@ cp    @[RTPWD]/MOM6_IC/2011100100/MOM*.nc ./INPUT
 cp    @[RTPWD]/CICE_IC/cice5_model_0.25.cpc*.nc cice5_model.res.nc
 
 # WARM START
-if [[ ! $MED_restart_data == '' ]]; then
-  RFILE="DATM_CFSR.cold.cpl.r.${SYEAR}-${SMONTH}-${SDAY}-03600.nc"
-  if [[ @[CREATE_BASELINE] == 'true' ]]; then
-  cp  @[NEW_BASELINE]/MEDIATOR_CMEPS_CFSR/${RFILE} .
-  else
-  cp  @[RTPWD]/MEDIATOR_CMEPS_CFSR/${RFILE} .
-  fi
-  ls -1 ${RFILE}>rpointer.cpl
-fi
+#if [[ ! $MED_restart_data == '' ]]; then
+#  RFILE="DATM_CFSR.cold.cpl.r.${SYEAR}-${SMONTH}-${SDAY}-03600.nc"
+#  if [[ @[CREATE_BASELINE] == 'true' ]]; then
+#  cp  @[NEW_BASELINE]/MEDIATOR_CMEPS_CFSR/${RFILE} .
+#  else
+#  cp  @[RTPWD]/MEDIATOR_CMEPS_CFSR/${RFILE} .
+#  fi
+#  ls -1 ${RFILE}>rpointer.cpl
+#fi

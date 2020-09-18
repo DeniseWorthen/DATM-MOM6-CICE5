@@ -13,12 +13,12 @@ export_cpl
 
 export FILENAME_BASE='gefs.'
 export DATM_SRC='GEFS'
-export RESTART_INTERVAL=24
 
 export DAYS="20"
 export FHMAX="480"
 export FDIAG="6"
 export WLCLK=240
+export RESTART_INTERVAL=FHMAX
 
 # set component and coupling timesteps
 export DT_CICE=${DT_ATMOS}
@@ -36,5 +36,5 @@ export coupling_interval_fast_sec=${CPL_FAST}
 
 export FV3_RUN=test_case_gefs.IN
 
-export MED_restart_data='MEDIATOR_GEFS'
+export MED_restart_data=''
 export regression_test='NO'
