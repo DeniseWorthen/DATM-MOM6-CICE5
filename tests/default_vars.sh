@@ -174,7 +174,6 @@ export CICE_HIST_AVG='.true.'
 
 # default setting for runid
 export RUNID='cpcice'
-export MEDCOMP=''
 
 export CPLMODE='nems_orig_data'
 export RESTART_INTERVAL = 24

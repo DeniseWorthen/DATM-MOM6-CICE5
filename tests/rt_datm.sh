@@ -36,12 +36,9 @@ edit_mom_input < ${PATHTR}/parm/MOM_input_template > INPUT/MOM_input
 edit_diag_table < ${PATHTR}/parm/diag_table_template > diag_table
 cp ${PATHTR}/parm/data_table data_table
 cp ${PATHTR}/parm/datm_data_table.IN datm_data_table
-
-if [[ $MEDCOMP != '' ]]; then
 cp ${PATHTR}/parm/fd_nems.yaml fd_nems.yaml
 cp ${PATHTR}/parm/pio_in pio_in
 cp ${PATHTR}/parm/med_modelio.nml med_modelio.nml
-fi
 
 if [[ $SCHEDULER = 'moab' ]]; then
   atparse < $PATHRT/datm_conf/datm_msub.IN > job_card
