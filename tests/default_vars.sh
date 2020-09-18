@@ -94,15 +94,10 @@ export THRD=1
 export WLCLK=$WLCLK_dflt
 export TASKS=$TASKS_dflt
 export TPN=$TPN_dflt
-export RESTART_INTERVAL=86400
-export CPL=.F.
-export CPLFLX=.F.
-export CPLWAV=.F.
-export CPLWAV2ATM=.F.
+export RESTART_INTERVAL=1
 export IATM=1536
 export JATM=768
 export ATMRES='C96'
-export WARM_START=.F.
 export ENS_NUM=1
 export SYEAR='2011'
 export SMONTH='10'
@@ -129,29 +124,47 @@ export atm_petlist_bounds=$APB_cpl_dflt
 export ocn_petlist_bounds=$OPB_cpl_dflt
 export ice_petlist_bounds=$IPB_cpl_dflt
 
+# default ice and ocean resolution
 export OCNRES='025'
-#export MED_restart_data=''
+export ICERES='0.25'
+export NX_GLB=1440
+export NY_GLB=1080
+
 export INPUT_NML="input.mom6.nml.IN"
 export FIELD_TABLE="field_table"
-export NSOUT='-1'
-export CPLFLX='.T.'
-export CPL='.true.'
+
 export MOM6_RESTART_SETTING='r'
-export MOM6_RIVER_RUNOFF='True'
-export DT_DYNAM_MOM6='900'
-export DT_THERM_MOM6='1800'
 
 export med_model="nems"
 export atm_model="datm"
 export ocn_model="mom6"
 export ice_model="cice"
 
+export cap_dbug_flag="0"
+export use_coldstart="false"
+# MOM6 river runoff
+export MOM6_RIVER_RUNOFF='True'
+# set USE_LA_LI2016 to the current default; this must be set False for restart repro
+export MOM6_REPRO_LA='True'
+# set the THERMO_SPANS_COUPLING to the current default; according to Gustavo and Alper, the correct setting is "False"
+export MOM6_THERMO_SPAN='True'
+
+export DT_DYNAM_MOM6='900'
+export DT_THERM_MOM6='1800'
+export MOM_INPUT=MOM_input_template_025
+
 export NPROC_ICE='48'
 # defaults for CICE runtype and restart writing
-export RUNTYPE='initial' 
+export RUNTYPE='startup' 
 export DUMPFREQ='d' 
 export DUMPFREQ_N='1' 
 export USE_RESTART_TIME='.false.'
+# resolution dependent files
+export MESHICE="mesh.mx${OCNRES}.nc"
+export CICEGRID="grid_cice_NEMS_mx${OCNRES}.nc"
+export CICEMASK="kmtu_cice_NEMS_mx${OCNRES}.nc"
+export CHLCLIM="seawifs-clim-1997-2010.${NX_GLB}x${NY_GLB}.v20180328.nc"
+export FRUNOFF="runoff.daitren.clim.${NX_GLB}x${NY_GLB}.v20180328.nc"
 # setting to true will allow Frazil FW and Salt to be
 # included in fluxes sent to ocean
 export FRAZIL_FWSALT='.true.'
@@ -161,7 +174,9 @@ export CICE_HIST_AVG='.true.'
 
 # default setting for runid
 export RUNID='cpcice'
-export ICEICESOURCE='cpc'
 export MEDCOMP=''
-#export MEDCOMP='CMEPS'
+
+export CPLMODE='nems_orig_data'
+export RESTART_INTERVAL = 24
+
 }
