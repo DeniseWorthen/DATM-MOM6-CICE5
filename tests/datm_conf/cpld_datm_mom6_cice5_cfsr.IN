@@ -18,11 +18,3 @@ cp    @[RTPWD]/DATM/CFSR/201110/* DATM_INPUT
 cp    @[RTPWD]/MOM6_IC/2011100100/MOM*.nc ./INPUT
 cp    @[RTPWD]/CICE_IC/cice5_model_0.25.cpc*.nc cice5_model.res.nc
 
-# WARM START
-if [[ ! $MED_restart_data == '' ]]; then
-  if [[ @[CREATE_BASELINE] == 'true' ]]; then
-  cp  @[NEW_BASELINE]/MEDIATOR_CFSR/mediator_* .
-  else
-  cp  @[RTPWD]/MEDIATOR_CFSR/mediator_* .
-  fi
-fi

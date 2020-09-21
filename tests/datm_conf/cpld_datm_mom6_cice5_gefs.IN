@@ -15,12 +15,3 @@ cp    @[RTPWD]/CICE_FIX_mx025/kmtu_cice_NEMS_mx025.nc .
 cp    @[RTPWD]/DATM/GEFS/201110/* DATM_INPUT
 cp    @[RTPWD]/MOM6_IC/2011100100/MOM*.nc ./INPUT
 cp    @[RTPWD]/CICE_IC/cice5_model_0.25.cpc*.nc cice5_model.res.nc
-
-# WARM START
-if [[ ! $MED_restart_data == '' ]]; then
-  if [[ @[CREATE_BASELINE] == 'true' ]]; then
-  cp  @[NEW_BASELINE]/MEDIATOR_GEFS/mediator_* .
-  else
-  cp  @[RTPWD]/MEDIATOR_GEFS/mediator_* .
-  fi
-fi

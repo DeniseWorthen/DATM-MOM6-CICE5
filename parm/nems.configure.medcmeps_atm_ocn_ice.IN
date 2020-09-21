@@ -18,7 +18,7 @@ ATM_model:                      @[atm_model]
 ATM_petlist_bounds:             @[atm_petlist_bounds]
 ATM_attributes::
   Verbosity = 0
-  DumpFields = true
+  DumpFields = false
   ProfileMemory = false
   OverwriteSlice = true
   DebugFlag = 0
@@ -29,7 +29,7 @@ OCN_model:                      @[ocn_model]
 OCN_petlist_bounds:             @[ocn_petlist_bounds]
 OCN_attributes::
   Verbosity = 0
-  DumpFields = true
+  DumpFields = false
   ProfileMemory = false
   OverwriteSlice = true
   restart_option = nhours
@@ -41,7 +41,7 @@ ICE_model:                      @[ice_model]
 ICE_petlist_bounds:             @[ice_petlist_bounds]
 ICE_attributes::
   Verbosity = 0
-  DumpFields = true
+  DumpFields = false
   ProfileMemory = false
   OverwriteSlice = true
 ::
@@ -74,16 +74,16 @@ runSeq::
 # CMEPS variables
 
 DRIVER_attributes::
-      mediator_read_restart = .true.
+      mediator_read_restart = @[use_coldstart]
 ::
 MED_attributes::
-      ATM_model = datm
-      ICE_model = cice
-      OCN_model = mom
+      ATM_model = @[atm_model]
+      ICE_model = @[ice_model]
+      OCN_model = @[ocn_model]
       history_n = 0
       history_option = nhours
       history_ymd = -999
-      coupling_mode = nems_orig_data
+      coupling_mode = @[CPLMODE]
 ::
 ALLCOMP_attributes::
       ScalarFieldCount = 2
@@ -95,6 +95,8 @@ ALLCOMP_attributes::
       restart_n = @[RESTART_INTERVAL]
       restart_option = nhours
       restart_ymd = -999
+      dbug_flag = @[cap_dbug_flag]
+      use_coldstart = @[use_coldstart]
       coldair_outbreak_mod = .false.
       flds_wiso = .false.
       flux_convergence = 0.0
