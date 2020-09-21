@@ -32,8 +32,6 @@ OCN_attributes::
   DumpFields = false
   ProfileMemory = false
   OverwriteSlice = true
-  restart_option = nhours
-  restart_n = @[RESTART_INTERVAL]
 ::
 
 # ICE #
