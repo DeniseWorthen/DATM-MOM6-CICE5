@@ -141,6 +141,7 @@ export atm_model="datm"
 export ocn_model="mom6"
 export ice_model="cice"
 
+export cap_dbug_flag="0"
 export use_coldstart="false"
 export NPROC_ICE='48'
 # defaults for CICE runtype and restart writing
@@ -159,4 +160,5 @@ export CICE_HIST_AVG='.true.'
 export RUNID='cpcice'
 export CPLMODE='nems_orig_data'
 export RESTART_INTERVAL='24'
+export MEDCOMP=''
 }
