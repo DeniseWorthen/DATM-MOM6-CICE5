@@ -94,7 +94,7 @@ export THRD=1
 export WLCLK=$WLCLK_dflt
 export TASKS=$TASKS_dflt
 export TPN=$TPN_dflt
-export RESTART_INTERVAL=86400
+export RESTART_INTERVAL=1
 export CPL=.F.
 export CPLFLX=.F.
 export CPLWAV=.F.
@@ -146,9 +146,12 @@ export atm_model="datm"
 export ocn_model="mom6"
 export ice_model="cice"
 
+export CPLMODE='nems_orig'
+export cap_dbug_flag="0"
+export use_coldstart="false"
+export RUNTYPE='initial'
+
 export NPROC_ICE='48'
-# defaults for CICE runtype and restart writing
-export RUNTYPE='initial' 
 export DUMPFREQ='d' 
 export DUMPFREQ_N='1' 
 export USE_RESTART_TIME='.false.'
