@@ -15,7 +15,6 @@ MED_attributes::
   DumpFields = false
   DumpRHs = false
   coldstart = false
-  restart_interval = @[RESTART_INTERVAL]
   ProfileMemory = false
   AoMedFlux = true
 ::
@@ -35,9 +34,8 @@ OCN_model:                      @[ocn_model]
 OCN_petlist_bounds:             @[ocn_petlist_bounds]
 OCN_attributes::
   DumpFields = false
-  restart_option = nseconds
-  restart_n = @[RESTART_INTERVAL]
   ProfileMemory = false
+  use_coldstart = false
 ::
 
 # ICE #

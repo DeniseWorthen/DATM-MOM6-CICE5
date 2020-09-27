@@ -10,8 +10,8 @@ fi
 
 readonly app_name=$1
 readonly build_name=datm_mom6_cice_${2:-0}
-readonly clean_before=${3:-YES}
-readonly clean_after=${4:-YES}
+readonly clean_before=${3:-NO}
+readonly clean_after=${4:-NO}
 
 hostname
 
