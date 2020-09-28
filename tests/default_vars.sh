@@ -94,27 +94,42 @@ export THRD=1
 export WLCLK=$WLCLK_dflt
 export TASKS=$TASKS_dflt
 export TPN=$TPN_dflt
-export RESTART_INTERVAL=1
-export IATM=1536
-export JATM=768
-export ATMRES='C96'
+export RESTART_INTERVAL=0
 export ENS_NUM=1
+
 export SYEAR='2011'
 export SMONTH='10'
 export SDAY='01'
 export SHOUR='00'
 export CDATE=${SYEAR}${SMONTH}${SDAY}${SHOUR}
+
 export NFHOUT=6
 export DAYS=0.041666666
 export FHMAX=1
 export FHMAX=${FHMAX:-`expr $DAYS \* 24`}
 export DT_ATMOS=900
-export DATM_SRC="GEFS"
-export FILENAME_BASE='gefs.'
+export ATMRES='C96'
 }
 
 export_cpl ()
-{ 
+{
+export DAYS="2"
+export FHMAX="48"
+export FDIAG="6"
+export WLCLK=30
+
+# default datm/ocn/ice resolution
+export DATM_SRC='CFSR'
+export FILENAME_BASE='cfsr.'
+export IATM='1760'
+export JATM='880'
+
+export OCNRES='100'
+export ICERES='1.00'
+export NX_GLB=360
+export NY_GLB=320
+
+#default resources
 export TASKS=$TASKS_cpl_dflt
 export TPN=$TPN_cpl_dflt
 export THRD=$THRD_cpl_dflt
@@ -124,60 +139,59 @@ export atm_petlist_bounds=$APB_cpl_dflt
 export ocn_petlist_bounds=$OPB_cpl_dflt
 export ice_petlist_bounds=$IPB_cpl_dflt
 
-# default ice and ocean resolution
-export OCNRES='025'
-export ICERES='0.25'
-export NX_GLB=1440
-export NY_GLB=1080
+# component and coupling timesteps
+export DT_ATMOS='900'
+export DT_CICE=${DT_ATMOS}
+export DT_DYNAM_MOM6='1800'
+export DT_THERM_MOM6='3600'
+export CPL_SLOW=${DT_THERM_MOM6}
+export CPL_FAST=${DT_ATMOS}
 
-export INPUT_NML="input.mom6.nml.IN"
-export FIELD_TABLE="field_table"
-
-export MOM6_RESTART_SETTING='r'
-
+# nems.configure defaults
+export NEMS_CONFIGURE="nems.configure.medcmeps_atm_ocn_ice.IN"
 export med_model="nems"
 export atm_model="datm"
 export ocn_model="mom6"
 export ice_model="cice6"
 
+export coupling_interval_slow_sec=${CPL_SLOW}
+export coupling_interval_fast_sec=${CPL_FAST}
+
+export FV3_RESTART_INTERVAL=${FHMAX}
+export CPLMODE='nems_orig'
 export cap_dbug_flag="0"
 export use_coldstart="false"
-# MOM6 river runoff
-export MOM6_RIVER_RUNOFF='True'
-# set USE_LA_LI2016 to the current default; this must be set False for restart repro
-export MOM6_REPRO_LA='True'
-# set the THERMO_SPANS_COUPLING to the current default; according to Gustavo and Alper, the correct setting is "False"
-export MOM6_THERMO_SPAN='True'
+export RUNTYPE='startup'
 
-export DT_DYNAM_MOM6='900'
-export DT_THERM_MOM6='1800'
-export MOM_INPUT=MOM_input_template_025
+# DATM defaults
+export INPUT_NML="input.mom6.nml.IN"
+export FIELD_TABLE="field_table"
 
-export NPROC_ICE='48'
-# defaults for CICE runtype and restart writing
-export RUNTYPE='startup' 
-export DUMPFREQ='d' 
-export DUMPFREQ_N='1' 
-export USE_RESTART_TIME='.false.'
-# set false for CICE6
-export RESTART_EXT='.false'
-# resolution dependent files
+# MOM6 defaults; 1 degree
+export MOM_INPUT=MOM_input_template_100
+export MOM6_RESTART_SETTING='n'
+export MOM6_RIVER_RUNOFF='False'
+export FRUNOFF=""
+export CHLCLIM="seawifs_1998-2006_smoothed_2X.nc"
+# these must be set False for restart repro
+export MOM6_REPRO_LA='False'
+export MOM6_THERMO_SPAN='False'
+# no WW3
+export MOM6_USE_WAVES='False'
+
+# CICE6 defaults; 1 degree
+export NPROC_ICE='12'
 export MESHICE="mesh.mx${OCNRES}.nc"
 export CICEGRID="grid_cice_NEMS_mx${OCNRES}.nc"
 export CICEMASK="kmtu_cice_NEMS_mx${OCNRES}.nc"
-export CHLCLIM="seawifs-clim-1997-2010.${NX_GLB}x${NY_GLB}.v20180328.nc"
-export FRUNOFF="runoff.daitren.clim.${NX_GLB}x${NY_GLB}.v20180328.nc"
+export RUNID='unknown'
+export DUMPFREQ='d'
+export DUMPFREQ_N=${DAYS}
+export USE_RESTART_TIME='.false.'
+export RESTART_EXT='.false'
 # setting to true will allow Frazil FW and Salt to be
 # included in fluxes sent to ocean
 export FRAZIL_FWSALT='.true.'
-
 # default to write CICE average history files
 export CICE_HIST_AVG='.true.'
-
-# default setting for runid
-export RUNID='cpcice'
-
-export CPLMODE='nems_orig_data'
-export RESTART_INTERVAL='24'
-
 }

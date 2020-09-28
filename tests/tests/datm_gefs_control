@@ -1,0 +1,25 @@
+#
+# DATM GEFS control
+#
+
+export TEST_DESCR="DATM-MOM6-CICE6-CMEPS - 2d_warm GEFSmx100"
+
+export CNTL_DIR="RT-Baselines_gefs_control"
+export CNTLMED_DIR="RT-Baselines_gefs_control/RESTART"
+
+export LIST_FILES="RESTART/MOM.res.nc \
+                   RESTART/MOM.res_1.nc \
+                   RESTART/MOM.res_2.nc \
+                   RESTART/MOM.res_3.nc \
+                   RESTART/iced.2011-10-03-00000.nc \
+                   cfsr.datm.cpl.r.2011-10-03-00000.nc"
+
+export_datm
+export_cpl
+
+export FILENAME_BASE='gefs.'
+export DATM_SRC='GEFS'
+export IATM=1536
+export JATM=768
+
+export FV3_RUN=datm_control.IN
