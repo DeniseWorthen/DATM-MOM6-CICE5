@@ -18,4 +18,3 @@ export_datm
 export_cpl
 
 export FV3_RUN=datm_control.IN
-

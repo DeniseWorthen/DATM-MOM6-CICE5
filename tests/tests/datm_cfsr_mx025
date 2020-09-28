@@ -23,7 +23,6 @@ export INPES=$INPES_cpl_mx025
 export JNPES=$JNPES_cpl_mx025
 export THRD=$THRD_cpl_mx025
 export WRTTASK_PER_GROUP=$WPG_cpl_mx025
-export WRITE_GROUP=1
 
 export med_petlist_bounds=$MPB_cpl_mx025
 export atm_petlist_bounds=$APB_cpl_mx025
