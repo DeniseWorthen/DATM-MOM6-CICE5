@@ -32,10 +32,12 @@ atparse < ${PATHTR}/parm/model_configure.IN > model_configure
 atparse < ${PATHTR}/parm/${NEMS_CONFIGURE:-nems.configure} > nems.configure
 
 edit_ice_in < ${PATHTR}/parm/ice_in_template > ice_in
-edit_mom_input < ${PATHTR}/parm/MOM_input_template > INPUT/MOM_input
+edit_mom_input < ${PATHTR}/parm/${MOM_INPUT:-MOM_input_template_$OCNRES} > INPUT/MOM_input
 edit_diag_table < ${PATHTR}/parm/diag_table_template > diag_table
+edit_data_table < ${PATHTR}/parm/data_table_template > data_table
 cp ${PATHTR}/parm/data_table data_table
 cp ${PATHTR}/parm/datm_data_table.IN datm_data_table
+#CMEPS
 cp ${PATHTR}/parm/fd_nems.yaml fd_nems.yaml
 cp ${PATHTR}/parm/pio_in pio_in
 cp ${PATHTR}/parm/med_modelio.nml med_modelio.nml

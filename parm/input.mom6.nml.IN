@@ -4,7 +4,8 @@
             domains_stack_size = 5000000
             stack_size =0
 /
- &MOM_input_nml
+
+&MOM_input_nml
          output_directory = 'MOM6_OUTPUT/',
          input_filename = '@[MOM6_RESTART_SETTING]'
          restart_input_dir = 'INPUT/',
