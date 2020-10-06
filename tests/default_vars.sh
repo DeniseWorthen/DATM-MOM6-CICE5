@@ -154,14 +154,13 @@ export coupling_interval_slow_sec=${CPL_SLOW}
 export coupling_interval_fast_sec=${CPL_FAST}
 
 export FV3_RESTART_INTERVAL=${FHMAX}
-export CPLMODE='nems_orig'
+export CPLMODE='nems_orig_data'
 export cap_dbug_flag="0"
 export use_coldstart="false"
 export RUNTYPE='startup'
 
 # DATM defaults
 export INPUT_NML="input.mom6.nml.IN"
-export FIELD_TABLE="field_table"
 
 # MOM6 defaults; 1 degree
 export MOM_INPUT=MOM_input_template_100
