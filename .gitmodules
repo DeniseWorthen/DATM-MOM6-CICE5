@@ -11,7 +11,7 @@
 	url = https://github.com/NOAA-EMC/NEMSdatm
 [submodule "CMEPS"]
 	path = CMEPS
-	url = https://github.com/DeniseWorthen/CMEPS.git
+	url = https://github.com/NOAA-EMC/CMEPS.git
 [submodule "MOM6-interface/MOM6"]
 	path = MOM6-interface/MOM6
 	url = https://github.com/NOAA-EMC/MOM6
