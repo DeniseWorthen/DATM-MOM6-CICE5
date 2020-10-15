@@ -1,0 +1,16 @@
+#
+# DATM GEFS control
+#
+
+export TEST_DESCR="DATM-MOM6-CICE6-CMEPS - 20d GEFSmx100"
+
+export_datm
+export_cpl
+
+export FILENAME_BASE='gefs.'
+export DATM_SRC='GEFS'
+export IATM=1536
+export JATM=768
+
+export RT20D='.T.'
+export FV3_RUN=datm_control.IN

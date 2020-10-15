@@ -1,8 +1,8 @@
-#
+datm_gefs_mx025#
 # DATM GEFS control
 #
 
-export TEST_DESCR="DATM-MOM6-CICE6-CMEPS - 2d_warm GEFSmx025"
+export TEST_DESCR="DATM-MOM6-CICE6-CMEPS - `d_warm GEFSmx025"
 
 export CNTL_DIR="RT-Baselines_gefs_mx025"
 export CNTLMED_DIR="RT-Baselines_gefs_mx025/RESTART"
@@ -11,8 +11,8 @@ export LIST_FILES="RESTART/MOM.res.nc \
                    RESTART/MOM.res_1.nc \
                    RESTART/MOM.res_2.nc \
                    RESTART/MOM.res_3.nc \
-                   RESTART/iced.2011-10-03-00000.nc \
-                   cfsr.datm.cpl.r.2011-10-03-00000.nc"
+                   RESTART/iced.2011-10-02-00000.nc \
+                   cfsr.datm.cpl.r.2011-10-02-00000.nc"
 
 export_datm
 export_cpl
@@ -24,8 +24,6 @@ export JATM=768
 
 export TASKS=$TASKS_cpl_mx025
 export TPN=$TPN_cpl_mx025
-export INPES=$INPES_cpl_mx025
-export JNPES=$JNPES_cpl_mx025
 export THRD=$THRD_cpl_mx025
 export WRTTASK_PER_GROUP=$WPG_cpl_mx025
 
@@ -66,6 +64,5 @@ export FRUNOFF="runoff.daitren.clim.${NX_GLB}x${NY_GLB}.v20180328.nc"
 export MOM_INPUT="MOM_input_template_${OCNRES}"
 export MOM6_RIVER_RUNOFF='True'
 export MOM6_REPRO_LA='True'
-export MOM6_THERMO_SPAN='True'
 
 export FV3_RUN=datm_control.IN

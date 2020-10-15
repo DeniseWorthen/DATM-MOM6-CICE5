@@ -27,8 +27,8 @@ RUND="${RUNDIR}"
 # Set up the run directory
 atparse < ${PATHRT}/datm_conf/${FV3_RUN} > datm_run
 source ./datm_run
-atparse < ${PATHTR}/parm/input.mom6.nml.IN > input.nml
-atparse < ${PATHTR}/parm/model_configure.IN > model_configure
+atparse < ${PATHTR}/parm/${INPUT_NML:-input.nml.IN} > input.nml
+atparse < ${PATHTR}/parm/${MODEL_CONFIGURE:-model_configure.IN} > model_configure
 atparse < ${PATHTR}/parm/${NEMS_CONFIGURE:-nems.configure} > nems.configure
 
 edit_ice_in < ${PATHTR}/parm/ice_in_template > ice_in
@@ -68,6 +68,8 @@ elif [[ $SCHEDULER = 'lsf' ]]; then
   fi
   atparse < $PATHRT/datm_conf/datm_bsub.IN > job_card
 fi
+
+atparse < ${PATHTR}/parm/${NEMS_CONFIGURE:-nems.configure} > nems.configure
 
 ################################################################################
 # Submit test

@@ -1,0 +1,11 @@
+#
+# DATM CFSR control
+#
+
+export TEST_DESCR="DATM-MOM6-CICE6-CMEPS - 20d CFSRmx100"
+
+export_datm
+export_cpl
+
+export RT20D='.T.'
+export FV3_RUN=datm_control.IN
