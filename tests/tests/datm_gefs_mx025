@@ -23,8 +23,6 @@ export JATM=768
 
 export TASKS=$TASKS_cpl_mx025
 export TPN=$TPN_cpl_mx025
-export THRD=$THRD_cpl_mx025
-export WRTTASK_PER_GROUP=$WPG_cpl_mx025
 
 export med_petlist_bounds=$MPB_cpl_mx025
 export atm_petlist_bounds=$APB_cpl_mx025
