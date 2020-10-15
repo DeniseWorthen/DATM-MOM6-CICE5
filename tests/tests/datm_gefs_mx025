@@ -1,8 +1,7 @@
-datm_gefs_mx025#
 # DATM GEFS control
 #
 
-export TEST_DESCR="DATM-MOM6-CICE6-CMEPS - `d_warm GEFSmx025"
+export TEST_DESCR="DATM-MOM6-CICE6-CMEPS - 1d_warm GEFSmx025"
 
 export CNTL_DIR="RT-Baselines_gefs_mx025"
 export CNTLMED_DIR="RT-Baselines_gefs_mx025/RESTART"
