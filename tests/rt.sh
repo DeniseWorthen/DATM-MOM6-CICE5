@@ -36,6 +36,7 @@ rt_20d() {
 
     sed -i -e "s/\(export SYEAR\)/\1=\"$sy\"/" $new_test_name
     sed -i -e "s/\(export SMONTH\)/\1=\"$sm\"/" $new_test_name
+    DEP_RUN=${DEP_RUN}_${DATE_20D}
 
   TEST_NAME=${new_test_name#tests/}
 }
@@ -731,11 +732,8 @@ fi
 ## regression test is either failed or successful
 ##
 set +e
-cd ${LOG_DIR}
-if [[ -e compile_${COMPILE_NR}.log ]]; then
-cat ${LOG_DIR}/compile_${COMPILE_NR}.log       >  ${COMPILE_LOG}
+cat ${LOG_DIR}/compile_*.log                   >  ${COMPILE_LOG}
 cat ${LOG_DIR}/rt_*.log                        >> ${REGRESSIONTEST_LOG}
-fi
 if [[ -e fail_test ]]; then
   echo "FAILED TESTS: "
   echo "FAILED TESTS: "                        >> ${REGRESSIONTEST_LOG}
