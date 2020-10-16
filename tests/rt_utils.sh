@@ -364,7 +364,7 @@ check_results() {
 
       else
 
-        if [[ $i =~ mediator ]]; then
+        if [[ $i =~ datm.cpl ]]; then
           d=$( cmp ${RTPWD}/${CNTLMED_DIR}/$i ${RUNDIR}/$i | wc -l )
         elif [[ $i =~ RESTART/ ]]; then
           d=$( cmp ${RTPWD}/${CNTL_DIR}/$crst ${RUNDIR}/$i | wc -l )
@@ -404,7 +404,7 @@ check_results() {
       if [[ -f ${RUNDIR}/$i ]] ; then
         if [[ $i =~ RESTART/ ]]; then
           cp ${RUNDIR}/$i ${NEW_BASELINE}/${CNTL_DIR}/RESTART/$(basename $i)
-        elif [[ $i =~ mediator || $i =~ DATM ]]; then
+        elif [[ $i =~ datm.cpl ]]; then
           cp ${RUNDIR}/$i ${NEW_BASELINE}/${CNTLMED_DIR}
         else
           cp ${RUNDIR}/${i} ${NEW_BASELINE}/${CNTL_DIR}/${i}
@@ -525,7 +525,7 @@ EOF
 
 rocoto_create_run_task() {
 
-  if [[ $CREATE_BASELINE == true && $DEP_RUN != '' ]] || [[ $DEP_RUN != '' ]]; then
+  if [[ $CREATE_BASELINE == true && $DEP_RUN != '' ]] || [[ $WARM_START == .T. && $DEP_RUN != '' ]]; then
     DEP_STRING="<and> <taskdep task=\"compile_${COMPILE_NR}\"/> <taskdep task=\"${DEP_RUN}${RT_SUFFIX}\"/> </and>"
   else
     DEP_STRING="<taskdep task=\"compile_${COMPILE_NR}\"/>"
@@ -626,7 +626,7 @@ EOF
   echo "      inlimit max_jobs" >> ${ECFLOW_RUN}/${ECFLOW_SUITE}.def
   if [[ ${UNIT_TEST} == true && $DEP_RUN != '' ]]; then
     echo "      trigger compile_${COMPILE_NR} == complete and ${DEP_RUN} == complete" >> ${ECFLOW_RUN}/${ECFLOW_SUITE}.def
-  elif [[ $CREATE_BASELINE == true && $DEP_RUN != '' ]] || [[ $DEP_RUN != '' ]]; then
+  elif [[ $CREATE_BASELINE == true && $DEP_RUN != '' ]] || [[ $WARM_START == .T. && $DEP_RUN != '' ]]; then
     echo "      trigger compile_${COMPILE_NR} == complete and ${DEP_RUN}${RT_SUFFIX} == complete" >> ${ECFLOW_RUN}/${ECFLOW_SUITE}.def
   else
     echo "      trigger compile_${COMPILE_NR} == complete" >> ${ECFLOW_RUN}/${ECFLOW_SUITE}.def
