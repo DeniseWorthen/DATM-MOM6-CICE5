@@ -1,7 +1,7 @@
 mkdir INPUT DATM_INPUT RESTART history MOM6_OUTPUT
 
 # DATM input
-if [[ ${RT20D} == .T. ]]; then
+if [[ $RT20D == .T. ]]; then
  cp    @[RTPWD]/RUN20d/DATM_INPUT/${FILENAME_BASE}SCRIP.nc DATM_INPUT
  cp    @[RTPWD]/RUN20d/DATM_INPUT/@[DATM_SRC]/${SYEAR}${SMON}/* DATM_INPUT
 else
@@ -21,7 +21,7 @@ cp    @[RTPWD]/CICE_FIX/@[OCNRES]/mesh.mx@[OCNRES].nc .
 
 # ICs
 if [[ ${OCNRES} == '025' ]]; then
- if [[ ${RT20D} == .T. ]]; then
+ if [[ $RT20D == .T. ]]; then
   cp  @[RTPWD]/RUN20d/MOM6_IC/${SYEAR}${SMON}${SDAY}00/ocn/025/MOM*.nc ./INPUT
   cp  @[RTPWD]/RUN20d/CICE_IC/${SYEAR}${SMON}${SDAY}00/ice/025/cice5_model_0.25.res_*.nc cice_model.res.nc
  else
