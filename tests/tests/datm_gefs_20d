@@ -1,11 +1,17 @@
 #
-# DATM GEFS control
+# DATM GEFS 20d 1deg
 #
 
 export TEST_DESCR="DATM-MOM6-CICE6-CMEPS - 20d GEFSmx100"
 
+export_20d_run
 export_datm
 export_cpl
+
+export SYEAR
+export SMONTH
+export SDAY="01"
+export SHOUR="00"
 
 export FILENAME_BASE='gefs.'
 export DATM_SRC='GEFS'

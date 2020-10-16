@@ -1,11 +1,17 @@
 #
-# DATM CFSR control
+# DATM CFSR 20d 1deg
 #
 
 export TEST_DESCR="DATM-MOM6-CICE6-CMEPS - 20d CFSRmx100"
 
+export_20d_run
 export_datm
 export_cpl
+
+export SYEAR
+export SMONTH
+export SDAY="01"
+export SHOUR="00"
 
 export RT20D='.T.'
 export FV3_RUN=datm_control.IN

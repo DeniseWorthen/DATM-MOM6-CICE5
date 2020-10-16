@@ -192,6 +192,9 @@ export FRAZIL_FWSALT='.true.'
 export CICE_HIST_AVG='.true.'
 
 export RT20D=''
+}
+export_20d_run ()
+{
 export CNTRL_DIR=''
 export CNTLMED_DIR=''
 export LIST_FILES=''

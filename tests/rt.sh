@@ -27,6 +27,19 @@ usage() {
 
 [[ $# -eq 0 ]] && usage
 
+rt_20d() {
+  local sy=$(echo ${DATE_20D} | cut -c 1-4)
+  local sm=$(echo ${DATE_20D} | cut -c 5-6)
+  local new_test_name="tests/${TEST_NAME}_${DATE_20D}"
+  rm -f tests/$new_test_name
+  cp tests/$TEST_NAME $new_test_name
+
+    sed -i -e "s/\(export SYEAR\)/\1=\"$sy\"/" $new_test_name
+    sed -i -e "s/\(export SMONTH\)/\1=\"$sm\"/" $new_test_name
+
+  TEST_NAME=${new_test_name#tests/}
+}
+
 rt_trap() {
   [[ ${ROCOTO:-false} == true ]] && rocoto_kill
   cleanup
@@ -223,7 +236,6 @@ elif [[ $MACHINE_ID = orion.* ]]; then
   ECFLOW_START=/work/noaa/fv3-cam/djovic/ecflow/bin/ecflow_start.sh
   ECF_PORT=$(( $(id -u) + 1500 ))
   QUEUE=batch
-#  ACCNR=marine-cpu
 #  ACCNR= # detected in detect_machine.sh
   PARTITION=orion
   dprefix=/work/noaa/stmp/${USER}
@@ -321,6 +333,7 @@ CREATE_BASELINE=false
 ROCOTO=false
 ECFLOW=false
 KEEP_RUNDIR=false
+TEST_20D=false
 
 TESTS_FILE='rt.conf'
 # Switch to special regression test config on wcoss_cray:
@@ -375,6 +388,10 @@ while getopts ":cfsl:mkreh" opt; do
   esac
 done
 
+if [[ $TESTS_FILE =~ '20d' ]]; then
+  TEST_20D=true
+fi
+
 if [[ $MACHINE_ID = cheyenne.* ]]; then
   RTPWD=${RTPWD:-$DISKNM/develop-20200210/${COMPILER^^}}
 else
@@ -401,8 +418,7 @@ if [[ $CREATE_BASELINE == true ]]; then
   rsync -a "${RTPWD}"/MOM6_* "${NEW_BASELINE}"/
   rsync -a "${RTPWD}"/CICE_* "${NEW_BASELINE}"/
 
-  # FIXME: move these namelist files to parm directory
-  #rsync -a "${RTPWD}"/fv3_stretched_nest_quilt/INPUT "${NEW_BASELINE}"/fv3_stretched_nest_quilt/
+  RTPWD=${NEW_BASELINE}
 fi
 
 COMPILE_LOG=${PATHRT}/Compile_$MACHINE_ID.log
@@ -422,6 +438,8 @@ rm -f fail_test
 LOG_DIR=${PATHRT}/log_$MACHINE_ID
 rm -rf ${LOG_DIR}
 mkdir ${LOG_DIR}
+
+rm -f ../datm_mom6_cice.exe
 
 if [[ $ROCOTO == true ]]; then
 
@@ -479,7 +497,7 @@ fi
 if [[ $ECFLOW == true ]]; then
 
   ECFLOW_RUN=${PATHRT}/ecflow_run
-  ECFLOW_SUITE=regtest
+  ECFLOW_SUITE=regtest_$$
   rm -rf ${ECFLOW_RUN}
   mkdir -p ${ECFLOW_RUN}/${ECFLOW_SUITE}
   cp head.h tail.h ${ECFLOW_RUN}
@@ -556,13 +574,13 @@ while read -r line; do
 
       # Set RT_SUFFIX (regression test run directories and log files) and BL_SUFFIX
       # (regression test baseline directories) for REPRO (IPD, CCPP) or PROD (CCPP) runs
-      if [[ ${NEMS_VER^^} =~ "REPRO=Y" ]]; then
-        RT_SUFFIX="_repro"
-        BL_SUFFIX="_repro"
-      elif [[ ${NEMS_VER^^} =~ "CCPP=Y" ]]; then
-        RT_SUFFIX="_prod"
-        BL_SUFFIX="_ccpp"
-      fi
+      #if [[ ${NEMS_VER^^} =~ "REPRO=Y" ]]; then
+      #  RT_SUFFIX="_repro"
+      #  BL_SUFFIX="_repro"
+      #elif [[ ${NEMS_VER^^} =~ "CCPP=Y" ]]; then
+      #  RT_SUFFIX="_prod"
+      #  BL_SUFFIX="_ccpp"
+      #fi
 
       if [[ ${NEMS_VER^^} =~ "WW3=Y" ]]; then
          COMPILE_PREV_WW3_NR=${COMPILE_NR}
@@ -616,10 +634,15 @@ while read -r line; do
     MACHINES=$( echo $line | cut -d'|' -f4)
     CB=$(       echo $line | cut -d'|' -f5)
     DEP_RUN=$(  echo $line | cut -d'|' -f6 | sed -e 's/^ *//' -e 's/ *$//')
+    DATE_20D=$( echo $line | cut -d'|' -f7 | sed -e 's/^ *//' -e 's/ *$//')
+
     [[ -e "tests/$TEST_NAME" ]] || die "run test file tests/$TEST_NAME does not exist"
     [[ $SET_ID != ' ' && $SET != *${SET_ID}* ]] && continue
     [[ $MACHINES != ' ' && $MACHINES != *${MACHINE_ID}* ]] && continue
     [[ $CREATE_BASELINE == true && $CB != *datm* ]] && continue
+
+    # 20 day tests
+    [[ $TEST_20D == true ]] && rt_20d
 
     # skip all *_appbuild runs if rocoto or ecFlow is used. FIXME
     if [[ ${ROCOTO} == true && ${ECFLOW} == true ]]; then
@@ -733,6 +756,7 @@ else
   mv datm_*.exe modules.datm_* MODULES_AND_EXE
   [[ ${KEEP_RUNDIR} == false ]] && rm -rf ${RUNDIR_ROOT}
   [[ ${ROCOTO} == true ]] && rm -f ${ROCOTO_XML} ${ROCOTO_DB} *_lock.db
+  [[ ${TEST_20D} == true ]] && rm -f tests/datm_*_20d_*
 fi
 
 date >> ${REGRESSIONTEST_LOG}
