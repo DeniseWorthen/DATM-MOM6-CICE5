@@ -9,7 +9,7 @@ export CNTLMED_DIR="RT-Baselines_gefs_control/RESTART"
 
 export LIST_FILES="RESTART/MOM.res.nc \
                    RESTART/iced.2011-10-02-00000.nc \
-                   RESTART/cfsr.datm.cpl.r.2011-10-02-00000.nc"
+                   RESTART/gefs.datm.cpl.r.2011-10-02-00000.nc"
 
 export_datm
 export_cpl

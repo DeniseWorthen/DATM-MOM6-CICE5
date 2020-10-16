@@ -1,5 +1,5 @@
 #
-# DATM CFSR contro mx025l
+# DATM CFSR control mx025
 #
 
 export TEST_DESCR="DATM-MOM6-CICE6-CMEPS - CFSRmx025"

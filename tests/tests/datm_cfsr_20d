@@ -13,5 +13,11 @@ export SMONTH
 export SDAY="01"
 export SHOUR="00"
 
+export DAYS="20"
+export FHMAX="480"
+export WLCLK=480
+
+export RESTART_H=${FHMAX}
+
 export RT20D='.T.'
 export FV3_RUN=datm_control.IN

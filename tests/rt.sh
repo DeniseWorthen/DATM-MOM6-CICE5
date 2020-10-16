@@ -734,9 +734,8 @@ set +e
 cd ${LOG_DIR}
 if [[ -e compile_${COMPILE_NR}.log ]]; then
 cat ${LOG_DIR}/compile_${COMPILE_NR}.log       >  ${COMPILE_LOG}
-cd ${PATHRT}
-fi
 cat ${LOG_DIR}/rt_*.log                        >> ${REGRESSIONTEST_LOG}
+fi
 if [[ -e fail_test ]]; then
   echo "FAILED TESTS: "
   echo "FAILED TESTS: "                        >> ${REGRESSIONTEST_LOG}

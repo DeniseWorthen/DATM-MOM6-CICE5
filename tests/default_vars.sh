@@ -22,13 +22,13 @@ elif [[ $MACHINE_ID = orion.* ]]; then
   TASKS_dflt=150 ; TPN_dflt=24 ; INPES_dflt=3 ; JNPES_dflt=8
   TASKS_thrd=84  ; TPN_thrd=12 ; INPES_thrd=3 ; JNPES_thrd=4
 
-  TASKS_cpl_dflt=154; TPN_cpl_dflt=40
-  MPB_cpl_dflt="16 111"; APB_cpl_dflt="0 15"
-  OPB_cpl_dflt="112 141"; IPB_cpl_dflt="142 153"
+  TASKS_cpl_dflt=80; TPN_cpl_dflt=40
+  MPB_cpl_dflt="16 37"; APB_cpl_dflt="0 15"
+  OPB_cpl_dflt="38 67"; IPB_cpl_dflt="68 79"
 
-  TASKS_cpl_mx050=154; TPN_cpl_mx050=40
-  MPB_cpl_mx050="16 111"; APB_cpl_mx050="0 15"
-  OPB_cpl_mx050="112 141"; IPB_cpl_mx050="142 153"
+  TASKS_cpl_mx050=160; TPN_cpl_mx050=40
+  MPB_cpl_mx050="16 75"; APB_cpl_mx050="0 15"
+  OPB_cpl_mx050="76 135"; IPB_cpl_mx050="136 159"
 
   TASKS_cpl_mx025=280; TPN_cpl_mx025=40
   MPB_cpl_mx025="16 111"; APB_cpl_mx025="0 15"
@@ -39,9 +39,13 @@ elif [[ $MACHINE_ID = hera.* ]]; then
   TASKS_dflt=150 ; TPN_dflt=40 ; INPES_dflt=3 ; JNPES_dflt=8
   TASKS_thrd=84  ; TPN_thrd=20 ; INPES_thrd=3 ; JNPES_thrd=4
 
-  TASKS_cpl_dflt=154; TPN_cpl_dflt=40
-  MPB_cpl_dflt="16 111"; APB_cpl_dflt="0 15"
-  OPB_cpl_dflt="112 141"; IPB_cpl_dflt="142 153"
+  TASKS_cpl_dflt=80; TPN_cpl_dflt=40
+  MPB_cpl_dflt="16 37"; APB_cpl_dflt="0 15"
+  OPB_cpl_dflt="38 67"; IPB_cpl_dflt="68 79"
+
+  TASKS_cpl_mx050=160; TPN_cpl_mx050=40
+  MPB_cpl_mx050="16 75"; APB_cpl_mx050="0 15"
+  OPB_cpl_mx050="76 135"; IPB_cpl_mx050="136 159"
 
   TASKS_cpl_mx025=280; TPN_cpl_mx025=40
   MPB_cpl_mx025="16 111"; APB_cpl_mx025="0 15"
