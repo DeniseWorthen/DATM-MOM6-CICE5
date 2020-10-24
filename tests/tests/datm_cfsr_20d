@@ -17,7 +17,7 @@ export DAYS="20"
 export FHMAX="480"
 export WLCLK=480
 
-export RESTART_H=${FHMAX}
+export RESTART_N=${FHMAX}
 
 export RT20D='.T.'
 export FV3_RUN=datm_control.IN
